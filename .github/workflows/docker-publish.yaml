@@ -15,6 +15,7 @@ jobs:
     permissions:
       contents: read
       packages: write
+      id-token: write # needed for signing the images with GitHub OIDC Token
 
     steps:
       - name: Checkout repository
@@ -54,4 +55,4 @@ jobs:
       - name: Sign the published Docker image
         env:
           COSIGN_PASSWORD: ${{ secrets.COSIGN_PASSWORD }}
-        run: cosign sign --key cosign.key gglml2002/${{ env.IMAGE_NAME }}:3.0
+        run: cosign sign --yes --key cosign.key gglml2002/${{ env.IMAGE_NAME }}:3.0
