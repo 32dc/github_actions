@@ -33,4 +33,4 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           push: true
-          tags: gglml2002/${{ env.IMAGE_NAME }}:latest
+          tags: ${{ github.actor }}/${{ env.IMAGE_NAME }}:1.0
