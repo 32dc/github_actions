@@ -25,7 +25,9 @@ jobs:
 
       - name: Print github_ref
         id: get-tag
-        run: echo "short_ref=${GITHUB_REF#refs/*/}" >> $GITHUB_OUTPUT
+        run: |
+          echo "short_ref=${GITHUB_REF#refs/*/}" >> $GITHUB_OUTPUT
+          echo $GITHUB_OUTPUT
 
       - name: Setup Docker buildx
         uses: docker/setup-buildx-action@v1.6.0
