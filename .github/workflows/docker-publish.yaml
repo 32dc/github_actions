@@ -24,7 +24,8 @@ jobs:
         run: echo "The actor is ${{ github.actor }}"
 
       - name: Print github_ref
-        run: echo "short_ref=${GITHUB_REF#refs/*/}" 
+        id: get-tag
+        run: echo "short_ref=${GITHUB_REF#refs/*/}" >> $GITHUB_OUTPUT
 
       - name: Setup Docker buildx
         uses: docker/setup-buildx-action@v1.6.0
@@ -39,4 +40,4 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           push: true
-          tags: gglml2002/${{ env.IMAGE_NAME }}:1.0
+          tags: gglml2002/${{ env.IMAGE_NAME ${{ steps.get-tag.outputs.short_ref }}"
