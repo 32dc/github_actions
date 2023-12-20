@@ -32,6 +32,12 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v5
+        with:
+          push: true
+          tags: gglml2002/${{ env.IMAGE_NAME }}:3.0
+
       - name: cosign-installer
         uses: sigstore/cosign-installer@v2.0.0
         
@@ -41,9 +47,7 @@ jobs:
         run: 'echo "$KEY" > cosign.key'
         shell: bash
 
-      - name: Build and push Docker image
-        uses: docker/build-push-action@v5
-        with:
-          push: true
-          tags: gglml2002/${{ env.IMAGE_NAME }}:2.0
-
+      - name: Sign the published Docker image
+        env:
+          COSIGN_PASSWORD: ${{ secrets.COSIGN_PASSWORD }}
+        run: cosign sign --key cosign.key gglml2002/${{ env.IMAGE_NAME }}:3.0
