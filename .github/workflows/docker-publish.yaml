@@ -40,4 +40,4 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           push: true
-          tags: gglml2002/${{ env.IMAGE_NAME ${{ steps.get-tag.outputs.short_ref }}"
+          tags: gglml2002/${{ env.IMAGE_NAME }}:${{ steps.get-tag.outputs.short_ref }}"
