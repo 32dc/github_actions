@@ -1,0 +1,15 @@
+name: 3 environments test workflow
+
+on:
+  workflow_dispatch
+
+jobs:
+  dev-job:
+  runs-on: ubuntu:latest
+  environment: dev
+  steps:
+  - uses: actions/checkout@v2
+    name: Run a script in dev env
+    run: |
+      echo "Running in dev environment"
+  
