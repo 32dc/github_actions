@@ -5,11 +5,11 @@ on:
 
 jobs:
   dev-job:
-  runs-on: ubuntu:latest
-  environment: dev
-  steps:
-  - uses: actions/checkout@v2
-    name: Run a script in dev env
-    run: |
-      echo "Running in dev environment"
+    runs-on: ubuntu:latest
+    environment: dev
+    steps:
+      - uses: actions/checkout@v2
+        name: Run a script in dev env
+        run: |
+          echo "Running in dev environment"
   
