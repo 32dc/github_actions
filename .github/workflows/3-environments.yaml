@@ -9,8 +9,13 @@ jobs:
     environment: dev
     steps:
       - uses: actions/checkout@v2
+
+      - id: set-env
+        name: Set environment variable
+        run: echo "ENV_NAME=dev" >> $GITHUB_ENV
+
       - id: dev-stage
         name: Run a script in dev env
         run: |
-          echo "Running in <${{environment}}> environment"
+          echo "Running in $ENV_NAME environment"
   
