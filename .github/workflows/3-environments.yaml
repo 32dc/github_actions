@@ -9,6 +9,7 @@ jobs:
     environment: dev
     steps:
       - uses: actions/checkout@v2
+      - id: dev-script
         name: Run a script in dev env
         run: |
           echo "Running in dev environment"
