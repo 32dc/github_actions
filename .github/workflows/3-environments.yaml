@@ -17,5 +17,5 @@ jobs:
       - id: dev-stage
         name: Run a script in dev env
         run: |
-          echo "Running in $ENV_NAME environment"
+          echo "Running in ${{ env.ENV_NAME }} environment"
   
