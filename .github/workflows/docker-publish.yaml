@@ -1,8 +1,9 @@
 name: Docker CI
 
 on:
-  push:
-    branches: [ master ]
+#  push:
+#    branches: [ master ]
+# commented above two lines so that workflow doesn't automatically trigger on push to master
   workflow_dispatch:
     
 env:
