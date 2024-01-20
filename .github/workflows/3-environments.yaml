@@ -10,16 +10,16 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - id: print pre-GITHUB_ENV
-        name: Print pre GITHUB_ENV value
+      - id: print pre GITHUB ENV
+        name: Print pre GITHUB ENV value
         run: echo $GITHUB_ENV
       
       - id: set-env
         name: Set environment variable
         run: echo "ENV_NAME=dev" >> $GITHUB_ENV
 
-      - id: print post-GITHUB_ENV
-        name: Print post GITHUB_ENV value
+      - id: print post GITHUB_ENV
+        name: Print post GITHUB ENV value
         run: echo $GITHUB_ENV
 
       - id: dev-stage
