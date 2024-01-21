@@ -16,7 +16,7 @@ jobs:
       
       - id: set-env
         name: Set environment variable
-        run: echo "ENV_NAME=dev" >> $GITHUB_ENV
+        run: echo "ENV_NAMEd=dev" >> $GITHUB_ENV
 
       - id: print_post
         name: Print post GITHUB ENV value
@@ -25,7 +25,7 @@ jobs:
       - id: dev-stage
         name: Run a script in QA env
         run: |
-          echo "Running in ${{ env.ENV_NAME }} environment"
+          echo "Running in ${{ env.ENV_NAMEd }} environment"
 
   QA-job:
     runs-on: ubuntu-latest
@@ -40,7 +40,7 @@ jobs:
       
       - id: set-env
         name: Set environment variable
-        run: echo "ENV_NAME=qa" >> $GITHUB_ENV
+        run: echo "ENV_NAMEq=qa" >> $GITHUB_ENV
 
       - id: print_post
         name: Print post GITHUB ENV value
@@ -49,7 +49,7 @@ jobs:
       - id: dev-stage
         name: Run a script in dev env
         run: |
-          echo "Running in ${{ env.ENV_NAME }} environment"
+          echo "Running in ${{ env.ENV_NAMEq }} environment"
   
   Prod-job:
     runs-on: ubuntu-latest
@@ -64,7 +64,7 @@ jobs:
       
       - id: set-env
         name: Set environment variable
-        run: echo "ENV_NAME=prod" >> $GITHUB_ENV
+        run: echo "ENV_NAMEp=prod" >> $GITHUB_ENV
 
       - id: print_post
         name: Print post GITHUB ENV value
@@ -73,5 +73,5 @@ jobs:
       - id: dev-stage
         name: Run a script in Prod env
         run: |
-          echo "Running in ${{ env.ENV_NAME }} environment"
+          echo "Running in ${{ env.ENV_NAMEp }} environment"
   
