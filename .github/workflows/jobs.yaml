@@ -5,8 +5,10 @@ on:
 
 jobs:
   test-jobs:
-  runs-on: ubuntu:latest
+    runs-on: ubuntu:latest
     steps:
+      - uses: actions/checkout@v2
+      
       - name: Generate value
         run: |
           echo "MY_VALUE=hello" >> $GITHUB_ENV # writes env variable (MY_VALUE: hello) into GITHUB_ENV file and is accessible in the same job only
