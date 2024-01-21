@@ -4,14 +4,35 @@ on:
   workflow_dispatch:
 
 jobs:
-  test-vars:
+  local-vars:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       
-      - name: Generate local env value
+      - id: generate-local-env-value
+        name: Generate local env value
         run: |
           echo "MY_VALUE=hello" >> $GITHUB_ENV # writes env variable (MY_VALUE: hello) into GITHUB_ENV file and is accessible in the same job only
-      - name: Print local env value
+      - id: print-local-env-value
+        name: Print local env value
         run: |
           echo $MY_VALUE  # Outputs "hello"
+  
+  global-vars-generate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - id: generate-global-env-value
+        name: Generate global env value
+        run: echo "::set-output name=myvalue::hello" # using set-output env variable is shared across jobs
+
+  global-vars-print:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - id: print-global-env-var
+        name: Print global env var
+        run: echo ${{ steps.generate-global-env-var.outputs.myvalue }}
+  
