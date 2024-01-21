@@ -1,0 +1,22 @@
+name: Example Workflow
+
+on: [push]
+
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+    outputs:
+      envVar: ${{ steps.set_env.outputs.envVar }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set environment variable
+        id: set_env
+        run: echo "envVar=123" >> $GITHUB_ENV
+
+  job2:
+    needs: job1
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use environment variable from job1
+        run: echo "Environment variable from job1: ${{ needs.job1.outputs.envVar }}"
