@@ -1,17 +1,17 @@
-name: jobs test
+name: test global and local env vars
 
 on:
   workflow_dispatch:
 
 jobs:
-  test-jobs:
-    runs-on: ubuntu:latest
+  test-vars:
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
       
-      - name: Generate value
+      - name: Generate local env value
         run: |
           echo "MY_VALUE=hello" >> $GITHUB_ENV # writes env variable (MY_VALUE: hello) into GITHUB_ENV file and is accessible in the same job only
-      - name: Use value
+      - name: Print local env value
         run: |
           echo $MY_VALUE  # Outputs "hello"
