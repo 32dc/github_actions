@@ -6,27 +6,35 @@ jobs:
   job1:
     runs-on: ubuntu-latest
     steps:
-      - name: Set environment variable
-        run: |
-           echo "envVar=123" >> $GITHUB_ENV
-           echo $GITHUB_ENV
+      - id: print_pre_GITHUB_ENV_file_contents
+        name: Print pre GITHUB ENV value
+        run: echo $GITHUB_ENV
+      
+      - id: set-env
+        name: Set environment variable
+        run: echo "ENV_NAME=dev" >> $GITHUB_ENV
+
+      - id: print_post_ GITHUB_ENV_file_contents
+        name: Print post GITHUB ENV value
+        run: echo $GITHUB_ENV
+
       - name: Upload environment file
         uses: actions/upload-artifact@v2
         with:
           name: env-vars
           path: $GITHUB_ENV
 
-  job2:
-    needs: job1
-    runs-on: ubuntu-latest
-    steps:
-      - name: Download environment file
-        uses: actions/download-artifact@v2
-        with:
-          name: env-vars
-      - name: Set environment variables from file
-        run: source $GITHUB_WORKSPACE/$GITHUB_ENV
-      - name: Use environment variable from job1
-        run: |
-           echo $GITHUB_ENV
-           echo "Environment variable from job1 $envVar"
+  # job2:
+  #   needs: job1
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Download environment file
+  #       uses: actions/download-artifact@v2
+  #       with:
+  #         name: env-vars
+  #     - name: Set environment variables from file
+  #       run: source $GITHUB_WORKSPACE/$GITHUB_ENV
+  #     - name: Use environment variable from job1
+  #       run: |
+  #          echo $GITHUB_ENV
+  #          echo "Environment variable from job1 $envVar"
