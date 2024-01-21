@@ -1,0 +1,15 @@
+name: jobs test
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test-jobs:
+  runs-on: ubuntu:latest
+    steps:
+      - name: Generate value
+        run: |
+          echo "MY_VALUE=hello" >> $GITHUB_ENV # writes env variable (MY_VALUE: hello) into GITHUB_ENV file and is accessible in the same job only
+      - name: Use value
+        run: |
+          echo $MY_VALUE  # Outputs "hello"
