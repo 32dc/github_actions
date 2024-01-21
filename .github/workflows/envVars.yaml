@@ -12,7 +12,7 @@ jobs:
       
       - id: set-env
         name: Set environment variable
-        run: echo "ENV_NAME=dev" >> $GITHUB_ENV
+        run: echo "ENV_NAME=abc" >> $GITHUB_ENV
 
       - id: print_post_GITHUB_ENV_file_contents
         name: Print post GITHUB ENV value
