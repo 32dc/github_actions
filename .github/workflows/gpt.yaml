@@ -1,6 +1,8 @@
+# This ChatGPT code doesn't seem to work
 name: Example Workflow
 
-on: [push]
+on:
+  workflow_dispatch:
 
 jobs:
   job1:
