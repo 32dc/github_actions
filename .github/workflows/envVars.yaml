@@ -25,4 +25,4 @@ jobs:
       - name: Set environment variables from file
         run: source $GITHUB_WORKSPACE/$GITHUB_ENV
       - name: Use environment variable from job1
-        run: echo "Environment variable from job1: $envVar"
+        run: echo "Environment variable from job1 $envVar"
