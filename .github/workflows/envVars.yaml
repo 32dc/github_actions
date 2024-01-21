@@ -1,31 +1,21 @@
-name: Example Workflow
-
-on: [push]
-
-jobs:
-  job1:
-    runs-on: ubuntu-latest
-    outputs:
-      envVar: ${{ steps.set_env.outputs.envVar }}
-    steps:
-      - name: Set environment variable
-        id: set_env
-        run: echo "envVar=123" >> $GITHUB_ENV
-      - name: Upload environment file
-        uses: actions/upload-artifact@v2
-        with:
-          name: env-vars
-          path: $GITHUB_ENV
-
-  job2:
-    needs: job1
-    runs-on: ubuntu-latest
-    steps:
-      - name: Download environment file
-        uses: actions/download-artifact@v2
-        with:
-          name: env-vars
-      - name: Set environment variables from file
-        run: source $GITHUB_WORKSPACE/$GITHUB_ENV
-      - name: Use environment variable from job1
-        run: echo "Environment variable from job1 $envVar"
+   name: env vars
+   on: push
+   jobs:
+      job1:
+        runs-on: ubuntu-latest
+        steps:
+          - run: echo "MY_VAR=myvalue" >> env.txt
+          - uses: actions/upload-artifact@v3
+            with:
+              name: env-file
+              path: env.txt
+    
+      job2:
+        runs-on: ubuntu-latest
+        needs: job1
+        steps:
+          - uses: actions/download-artifact@v3
+            with:
+              name: env-file
+          - run: source env.txt  # Sets MY_VAR in the environment
+          - run: echo $MY_VAR  # Outputs "myvalue"
