@@ -17,6 +17,6 @@ jobs:
     needs: job1
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      # - uses: actions/checkout@v2
       - name: Use environment variable from job1
         run: echo "Environment variable from job1 ${{ needs.job1.outputs.envVar }}"
