@@ -18,4 +18,5 @@
             with:
               name: env-file
           - run: source env.txt  # Sets MY_VAR in the environment
+          - run: cat env.txt
           - run: echo $MY_VAR  # Outputs "myvalue"
