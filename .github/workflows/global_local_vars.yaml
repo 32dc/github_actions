@@ -11,8 +11,7 @@ jobs:
       
       - id: generate-local-env-value
         name: Generate local env value
-        run: |
-          echo "MY_VALUE=hello" >> $GITHUB_ENV # writes env variable (MY_VALUE: hello) into GITHUB_ENV file and is accessible in the same job only
+        run: echo "MY_VALUE=hello" >> $GITHUB_ENV # writes env variable (MY_VALUE: hello) into GITHUB_ENV file and is accessible in the same job only
       - id: print-local-env-value
         name: Print local env value
         run: |
@@ -26,7 +25,7 @@ jobs:
 
       - id: generate-global-env-value
         name: Generate global env value
-        run: echo "::set-output name=myvalue::hello" # using set-output env variable is shared across jobs
+        run: echo "MY_VALUE=hello" >> $GITHUB_ENV # writes env variable (MY_VALUE: hello) into GITHUB_ENV file and can be accessed in another jobs
 
   global-vars-print:
     runs-on: ubuntu-latest
@@ -36,5 +35,5 @@ jobs:
 
       - id: print-global-env-var
         name: Print global env var
-        run: echo ${{ steps.generate-global-env-var.outputs.myvalue }}
+        run: echo ${{ generate-global-env-var.outputs.myvalue }}
   
