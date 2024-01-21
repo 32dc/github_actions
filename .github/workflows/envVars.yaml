@@ -1,3 +1,4 @@
+# stores an env var in job1 and retrieves the value in another job named job2
 name: envVars Workflow
 
 on: push
