@@ -1,28 +1,28 @@
-name: envVars Workflow
+# name: envVars Workflow
 
-on: [push]
+# on: [push]
 
-jobs:
-  job1:
-    runs-on: ubuntu-latest
-    steps:
-      - id: print_pre_GITHUB_ENV_file_contents
-        name: Print pre GITHUB ENV value
-        run: echo $GITHUB_ENV
+# jobs:
+#   job1:
+#     runs-on: ubuntu-latest
+#     steps:
+#       - id: print_pre_GITHUB_ENV_file_contents
+#         name: Print pre GITHUB ENV value
+#         run: echo $GITHUB_ENV
       
-      - id: set-env
-        name: Set environment variable
-        run: echo "ENV_NAME=abc" >> $GITHUB_ENV
+#       - id: set-env
+#         name: Set environment variable
+#         run: echo "ENV_NAME=abc" >> $GITHUB_ENV
 
-      - id: print_post_GITHUB_ENV_file_contents
-        name: Print post GITHUB ENV value
-        run: echo $GITHUB_ENV
+#       - id: print_post_GITHUB_ENV_file_contents
+#         name: Print post GITHUB ENV value
+#         run: echo $GITHUB_ENV
 
-      - name: Upload environment file
-        uses: actions/upload-artifact@v2
-        with:
-          name: env-vars
-          path: $GITHUB_ENV
+#       - name: Upload environment file
+#         uses: actions/upload-artifact@v2
+#         with:
+#           name: env-vars
+#           path: $GITHUB_ENV
 
   # job2:
   #   needs: job1
@@ -38,3 +38,39 @@ jobs:
   #       run: |
   #          echo $GITHUB_ENV
   #          echo "Environment variable from job1 $envVar"
+
+name: Example Workflow
+
+on: push
+
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set environment variable
+        run: |
+          echo "envVar=123" >> $GITHUB_ENV
+          echo $GITHUB_ENV
+      - name: Save environment variable to file
+        run: |
+          echo "envVar=123" > env_file.txt
+          cat env_file.txt
+      - name: Upload environment file
+        uses: actions/upload-artifact@v2
+        with:
+          name: env-vars
+          path: env_file.txt
+
+  # job2:
+  #   needs: job1
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Download environment file
+  #       uses: actions/download-artifact@v2
+  #       with:
+  #         name: env-vars
+  #     - name: Set environment variables from file
+  #       run: source $GITHUB_WORKSPACE/env_file.txt
+  #     - name: Use environment variable from job1
+  #       run: echo "Environment variable from job1 $envVar"
+
