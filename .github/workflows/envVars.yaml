@@ -39,7 +39,7 @@
   #          echo $GITHUB_ENV
   #          echo "Environment variable from job1 $envVar"
 
-name: Example Workflow
+name: envVars Workflow
 
 on: push
 
@@ -51,6 +51,7 @@ jobs:
         run: |
           echo "envVar=123" >> $GITHUB_ENV
           echo $GITHUB_ENV
+          echo $envVar
       - name: Save environment variable to file
         run: |
           echo "envVar=123" > env_file.txt
