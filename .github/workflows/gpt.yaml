@@ -8,7 +8,7 @@ jobs:
     outputs:
       envVar: ${{ steps.set_env.outputs.envVar }}
     steps:
-      - uses: actions/checkout@v2
+      # - uses: actions/checkout@v2
       - name: Set environment variable
         id: set_env
         run: echo "envVar=123" >> $GITHUB_ENV
