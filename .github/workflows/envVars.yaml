@@ -51,7 +51,6 @@ jobs:
         run: |
           echo "envVar=123" >> $GITHUB_ENV
           echo $GITHUB_ENV
-          echo $envVar
           
       - name: Print environment variable
         run: echo $envVar
