@@ -5,8 +5,11 @@ on: [push]
 jobs:
   job1:
     runs-on: ubuntu-latest
+    outputs:
+      envVar: ${{ steps.set_env.outputs.envVar }}
     steps:
       - name: Set environment variable
+        id: set_env
         run: echo "envVar=123" >> $GITHUB_ENV
       - name: Upload environment file
         uses: actions/upload-artifact@v2
