@@ -78,8 +78,9 @@ jobs:
       - name: Set environment variables from file
         run: |
               cat env_file.txt
-      #         source $GITHUB_WORKSPACE/env_file.txt
+              echo $envVar
+      #         source env_file.txt
         
-      # - name: Use environment variable from job1
-      #   run: echo "Environment variable from job1 $envVar"
+      # # - name: Use environment variable from job1
+      # #   run: echo "Environment variable from job1 $envVar"
 
