@@ -52,10 +52,15 @@ jobs:
           echo "envVar=123" >> $GITHUB_ENV
           echo $GITHUB_ENV
           echo $envVar
+          
+      - name: Print environment variable
+        run: echo $envVar
+        
       - name: Save environment variable to file
         run: |
           echo "envVar=123" > env_file.txt
           cat env_file.txt
+          
       - name: Upload environment file
         uses: actions/upload-artifact@v2
         with:
