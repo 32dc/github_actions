@@ -1,5 +1,4 @@
 # workflow to test workflow trigger after pr creation and approve/merge
-
 name: PR Test Workflow
 
 on:
@@ -30,9 +29,9 @@ jobs:
     steps:
     - id: init-plan
       name: Init-Plan
-      run: echo "This is the init and plan step"
+      run: echo ">>> This is the init and plan step"
 
     - id: apply
       if: github.event.pull_request.base.ref == 'b1' && github.event.pull_request.state == 'closed' && github.event.pull_request.merged == true
       name: Apply
-      run: echo "This is the apply step"
+      run: echo ">>> This is the apply step"
