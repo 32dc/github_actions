@@ -3,14 +3,15 @@
 name: PR Test Workflow
 
 on:
-  pull_request:
-    types:
-      - opened
-      - synchronize
-      - reopened
-      - edited
-    branches:
-      - b1
+  - *
+#  pull_request:
+#    types:
+#      - opened
+#      - synchronize
+#      - reopened
+#      - edited
+#    branches:
+#      - b1
 
 jobs:
   job1:
