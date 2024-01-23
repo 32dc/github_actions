@@ -1,0 +1,35 @@
+name: PR Test Workflow
+
+on:
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
+      - edited
+    branches:
+      - b1
+
+jobs:
+  job1:
+    name: Job1
+    runs-on: ubuntu-latest
+    permissions:
+      contents: 'read'
+      id-token: 'write'
+      issues: 'write'
+      pull-requests: 'write'
+
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+    - id: init-plan
+      name: Init-Plan
+        run: echo "This is the init and plan step"
+
+    - id: apply
+      if: github.event.pull_request.base.ref == 'b1' && github.event.pull_request.state == 'closed' && github.event.pull_request.merged == true
+      name: Apply
+        run: echo "This is the apply step"
