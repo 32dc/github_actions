@@ -1,4 +1,4 @@
-# workflow to test pr creation and approve/merge
+# workflow to test workflow trigger after pr creation and approve/merge
 name: PR Test Workflow
 
 on:
