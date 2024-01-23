@@ -1,4 +1,5 @@
 # workflow to test workflow trigger after pr creation and approve/merge
+
 name: PR Test Workflow
 
 on:
@@ -9,7 +10,7 @@ on:
       - reopened
       - edited
     branches:
-      - b2
+      - b1
 
 jobs:
   job1:
