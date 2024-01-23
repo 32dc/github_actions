@@ -13,25 +13,47 @@ on:
  #     - b1
 
 jobs:
-  job1:
-    name: Job1
+  dev-job:
     runs-on: ubuntu-latest
-    # permissions:
-    #   contents: 'read'
-    #   id-token: 'write'
-    #   issues: 'write'
-    #   pull-requests: 'write'
-
-    # defaults:
-    #   run:
-    #     shell: bash
-
+    environment: dev
     steps:
-    - id: init-plan
-      name: Init-Plan
-      run: echo ">>> This is the init and plan step"
+      - uses: actions/checkout@v2
 
-    - id: apply
-      if: github.event.pull_request.base.ref == 'b1' && github.event.pull_request.state == 'closed' && github.event.pull_request.merged == true
-      name: Apply
-      run: echo ">>> This is the apply step"
+      - id: print_pre
+        name: Print pre GITHUB ENV value
+        run: echo $GITHUB_ENV
+      
+      - id: set-env
+        name: Set environment variable
+        run: echo "ENV_NAMEd=dev" >> $GITHUB_ENV
+
+      - id: print_post
+        name: Print post GITHUB ENV value
+        run: echo $GITHUB_ENV
+
+      - id: dev-stage
+        name: Run a script in QA env
+        run: |
+          echo "Running in ${{ env.ENV_NAMEd }} environment"
+  # job1:
+  #   name: Job1
+  #   runs-on: ubuntu-latest
+  #   # permissions:
+  #   #   contents: 'read'
+  #   #   id-token: 'write'
+  #   #   issues: 'write'
+  #   #   pull-requests: 'write'
+
+  #   # defaults:
+  #   #   run:
+  #   #     shell: bash
+
+  #   steps:
+  #   - id: init-plan
+  #     name: Init-Plan
+  #     run: echo ">>> This is the init and plan step"
+
+  #   - id: apply
+  #     if: github.event.pull_request.base.ref == 'b1' && github.event.pull_request.state == 'closed' && github.event.pull_request.merged == true
+  #     name: Apply
+  #     run: echo ">>> This is the apply step"
