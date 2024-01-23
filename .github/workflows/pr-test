@@ -3,7 +3,7 @@
 name: PR Test Workflow
 
 on:
-  - *
+  workflow_dispatch:
 #  pull_request:
 #    types:
 #      - opened
