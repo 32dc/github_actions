@@ -9,7 +9,7 @@ on:
       - reopened
       - edited
     branches:
-      - b1
+      - b2
 
 jobs:
   job1:
