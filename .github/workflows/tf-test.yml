@@ -30,5 +30,7 @@ jobs:
 
     - name: Terraform Test
       run: |
+        pwd
         cd terraform
+        pwd
         cat "tf-file"
