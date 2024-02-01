@@ -2,9 +2,6 @@ name: Terraform Folder Test
 
 on:
   # workflow_dispatch:
-  push:
-    paths:
-      - '**/terraform/**'
   pull_request:
     branches:
       - staging
@@ -13,6 +10,9 @@ on:
       - opened
       - synchronize
       - closed
+  push:
+    paths:
+      - 'terraform/**'
 
 jobs:
   terraform_job:
