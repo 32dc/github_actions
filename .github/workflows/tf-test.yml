@@ -1,4 +1,4 @@
-name: Terraform Workflow
+name: Terraform Folder Test
 
 on:
   # workflow_dispatch:
