@@ -21,6 +21,12 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
+      
+    - name: Log Event Details
+      run: |
+        echo "Event Name: ${{ github.event.name }}"
+        echo "Event Ref: ${{ github.event.ref }}"
+        echo "Other relevant event properties..."
 
     - name: Terraform Test
       run: |
