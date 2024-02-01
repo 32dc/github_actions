@@ -28,6 +28,15 @@ jobs:
         echo "PR Num: ${{ github.event.pull_request.number }}"
         echo "Event Ref: ${{ github.event_ref }}"
         echo "PR ref: ${{ github.event.pull_request.head.ref }}"
+        echo "PR Title: ${{ github.event.pull_request.title }}"
+        echo "PR Number: ${{ github.event.pull_request.number }}"
+        echo "Author: ${{ github.event.pull_request.user.login }}"
+        echo "Target Branch: ${{ github.event.pull_request.base.ref }}"
+        echo "PR State: ${{ github.event.pull_request.state }}"
+        echo "Merged: ${{ github.event.pull_request.merged }}"
+        echo "PR Branch: ${{ github.event.pull_request.head.ref }}"
+        echo "PR Labels: ${{ toJSON(github.event.pull_request.labels) }}"
+
 
     - name: Terraform Test
       run: |
