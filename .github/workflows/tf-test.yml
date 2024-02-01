@@ -24,8 +24,8 @@ jobs:
       
     - name: Log Event Details
       run: |
-        echo "Event Name: ${{ github.event.name }}"
-        echo "Event Ref: ${{ github.event.ref }}"
+        echo "Event Name: ${{ github.event_name }}"
+        echo "Event Ref: ${{ github.event_ref }}"
         echo "Other relevant event properties..."
 
     - name: Terraform Test
